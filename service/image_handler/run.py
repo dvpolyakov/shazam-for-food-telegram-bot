@@ -51,7 +51,7 @@ def return_message():
     print(type(image))
     result = apply_clip(image)
     # return result
-    return 'answer'
+    return result
     # res_path = os.path.join(config.images_path, request_time, "result.jpg")
     # cv2.imwrite(res_path, result[:, :, ::-1] * 255)
 
