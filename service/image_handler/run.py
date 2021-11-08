@@ -3,9 +3,11 @@ import torch
 
 import os
 import config
-import cv2
+# import cv2
 from service.image_handler.images_classes import eats_classes
 from flask import Flask, request
+from PIL import Image
+
 
 app = Flask(__name__)
 
@@ -44,9 +46,10 @@ def return_message():
         config.images_path, request_time, "input.jpg"
     )
     print(path_to_input_image)
-    image = cv2.imread(path_to_input_image)[..., ::-1]
-    # print(type(image))
-    # result = apply_clip(image)
+    image = Image.open(open(path_to_input_image, 'rb'))
+    # image = cv2.imread(path_to_input_image)[..., ::-1]
+    print(type(image))
+    result = apply_clip(image)
     # return result
     return 'answer'
     # res_path = os.path.join(config.images_path, request_time, "result.jpg")
