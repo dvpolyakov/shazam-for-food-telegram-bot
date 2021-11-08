@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:latest
 RUN apt-get update -y
-RUN apt-get install -y python-pip
+RUN apt-get install -y python-pip git
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN mkdir /app/
 RUN mkdir /app/weights
