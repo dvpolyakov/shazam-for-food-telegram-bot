@@ -67,7 +67,7 @@ eats_classes_dict = {
     "borsch": "борщ",
     "porridge": "каша",
     "buckwheat": "гречка",
-    "curd": "творог",
+    "cottage cheese": "творог",
     "milk": "молоко",
     "pilaf": "плов",
 }

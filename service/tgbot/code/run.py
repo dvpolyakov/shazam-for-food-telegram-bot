@@ -42,9 +42,7 @@ async def handle_photo(message: types.Message):
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
 
-    await bot.send_message(message.from_user.id, response.text)
-    # if response.text == "1":
-    #     pass
+    await bot.send_message(message.from_user.id, f"Думаю, что это {response.text}")
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
     # )
