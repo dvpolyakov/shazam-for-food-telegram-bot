@@ -42,23 +42,24 @@ async def handle_photo(message: types.Message):
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
 
-    if response.text == "1":
-        pass
-        # await bot.send_message(
-        #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
-        # )
-    else:
-        img = open(request_images_path + "/result.jpg", "rb")
-        await bot.send_photo(
-            message.from_user.id,
-            img,
-            caption=response.text,
-        )
-        # await bot.send_message(
-        #     chat_id=message.from_user.id,
-        #     text=text_captions.MESSAGE_ASK_USER_ABOUT_RESULT,
-        #     reply_markup=generate_user_image_assesment_keyboard(),
-        # )
+    await bot.send_message(message.from_user.id, response.text)
+    # if response.text == "1":
+    #     pass
+    # await bot.send_message(
+    #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
+    # )
+    # else:
+    #     img = open(request_images_path + "/result.jpg", "rb")
+    #     await bot.send_photo(
+    #         message.from_user.id,
+    #         img,
+    #         caption=response.text,
+    #     )
+    # await bot.send_message(
+    #     chat_id=message.from_user.id,
+    #     text=text_captions.MESSAGE_ASK_USER_ABOUT_RESULT,
+    #     reply_markup=generate_user_image_assesment_keyboard(),
+    # )
 
 
 @dp.message_handler()
