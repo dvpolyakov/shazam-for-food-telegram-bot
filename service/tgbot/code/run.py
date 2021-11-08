@@ -26,7 +26,6 @@ from service.tgbot.code.setup_objects import (
 
 @dp.message_handler(content_types=["photo"])
 async def handle_photo(message: types.Message):
-    start_time = time.time()
     current_time_dttm = datetime.now()
     request_images_path = os.path.join(
         config.images_path, current_time_dttm.strftime(config.TIME_FORMAT)
@@ -36,7 +35,8 @@ async def handle_photo(message: types.Message):
     await message.photo[-1].download(
         os.path.join(request_images_path, "input.jpg")
     )
-
+    
+    start_time = time.time()
     await message.answer("Определяю еду на фото")
     response = requests.post(
         "http://image_handler:5000/return_message",
@@ -45,7 +45,7 @@ async def handle_photo(message: types.Message):
     time_spent = time.time() - start_time
     await bot.send_message(
         message.from_user.id,
-        f"Думаю, что это {response.text}, timespennt: {time_spent}",
+        f"Думаю, что это {response.text}, inference time: {time_spent}",
     )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
