@@ -39,17 +39,16 @@ def apply_clip(image):
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():
     print("request recieved")
-    request_time = request.form["time"]
-    path_to_input_image = os.path.join(
-        config.images_path, request_time, "input.jpg"
-    )
-    print(path_to_input_image)
-    image = cv2.imread(path_to_input_image)[..., ::-1]
-    print(type(image))
-    result = apply_clip(image)
-    return result
-    # result = cropper.process(image)
-
+    # request_time = request.form["time"]
+    # path_to_input_image = os.path.join(
+    #     config.images_path, request_time, "input.jpg"
+    # )
+    # print(path_to_input_image)
+    # image = cv2.imread(path_to_input_image)[..., ::-1]
+    # print(type(image))
+    # result = apply_clip(image)
+    # return result
+    return 'answer'
     # res_path = os.path.join(config.images_path, request_time, "result.jpg")
     # cv2.imwrite(res_path, result[:, :, ::-1] * 255)
 
