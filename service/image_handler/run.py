@@ -5,7 +5,7 @@ import os
 import config
 
 # import cv2
-from service.image_handler.images_classes import eats_classes
+from service.image_handler.images_classes import eats_classes_dict
 from flask import Flask, request
 from PIL import Image
 
@@ -18,8 +18,11 @@ app.route("/return_message", methods=["GET", "POST"])
 def apply_clip(image):
     # Prepare the inputs
     image_input = preprocess(image).unsqueeze(0).to(device)
+    en_dishes_names, ru_dishes_names = list(eats_classes_dict.keys()), list(
+        eats_classes_dict.values()
+    )
     text_inputs = torch.cat(
-        [clip.tokenize(f"a photo of a {c}") for c in eats_classes]
+        [clip.tokenize(f"a photo of a {c}") for c in en_dishes_names]
     ).to(device)
 
     # Calculate features
@@ -32,7 +35,7 @@ def apply_clip(image):
     text_features /= text_features.norm(dim=-1, keepdim=True)
     similarity = (100.0 * image_features @ text_features.T).softmax(dim=-1)
     values, indices = similarity[0].topk(5)
-    return eats_classes[indices[0]]
+    return ru_dishes_names[indices[0]]
 
     # Print the result
     # print("\nTop predictions:\n")
@@ -49,7 +52,6 @@ def return_message():
     )
     print(path_to_input_image)
     image = Image.open(open(path_to_input_image, "rb"))
-    # image = cv2.imread(path_to_input_image)[..., ::-1]
     print(type(image))
     result = apply_clip(image)
     # return result
