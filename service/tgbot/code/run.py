@@ -3,7 +3,7 @@ import logging
 import os
 from datetime import datetime
 from pathlib import Path
-
+import time
 import requests
 from aiogram import types
 
@@ -26,6 +26,7 @@ from service.tgbot.code.setup_objects import (
 
 @dp.message_handler(content_types=["photo"])
 async def handle_photo(message: types.Message):
+    start_time = time.time()
     current_time_dttm = datetime.now()
     request_images_path = os.path.join(
         config.images_path, current_time_dttm.strftime(config.TIME_FORMAT)
@@ -41,8 +42,11 @@ async def handle_photo(message: types.Message):
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
-
-    await bot.send_message(message.from_user.id, f"Думаю, что это {response.text}")
+    time_spent = time.time() - start_time
+    await bot.send_message(
+        message.from_user.id,
+        f"Думаю, что это {response.text}, timespennt: {time_spent}",
+    )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
     # )
