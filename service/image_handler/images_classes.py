@@ -63,4 +63,7 @@ eats_classes = [
     "barbecue",
     "sauce",
     "beverage",
+    'tom yam',
+    'khachapuri',
+    'baklava'
 ]
