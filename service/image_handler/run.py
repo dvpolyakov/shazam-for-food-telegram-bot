@@ -36,8 +36,9 @@ def apply_clip(image):
     # for value, index in zip(values, indices):
     #     print(f"{eats_classes[index]:>16s}: {100 * value.item():.2f}%")
 
-
+@app.route("/return_message", methods=["GET", "POST"])
 def return_message():
+    print("request recieved")
     request_time = request.form["time"]
     path_to_input_image = os.path.join(
         config.images_path, request_time, "input.jpg"
