@@ -3,6 +3,7 @@ import torch
 
 import os
 import config
+
 # import cv2
 from service.image_handler.images_classes import eats_classes
 from flask import Flask, request
@@ -38,6 +39,7 @@ def apply_clip(image):
     # for value, index in zip(values, indices):
     #     print(f"{eats_classes[index]:>16s}: {100 * value.item():.2f}%")
 
+
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():
     print("request recieved")
@@ -46,7 +48,7 @@ def return_message():
         config.images_path, request_time, "input.jpg"
     )
     print(path_to_input_image)
-    image = Image.open(open(path_to_input_image, 'rb'))
+    image = Image.open(open(path_to_input_image, "rb"))
     # image = cv2.imread(path_to_input_image)[..., ::-1]
     print(type(image))
     result = apply_clip(image)
