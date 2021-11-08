@@ -44,7 +44,7 @@ def return_message():
         config.images_path, request_time, "input.jpg"
     )
     print(path_to_input_image)
-    # image = cv2.imread(path_to_input_image)[..., ::-1]
+    image = cv2.imread(path_to_input_image)[..., ::-1]
     # print(type(image))
     # result = apply_clip(image)
     # return result
