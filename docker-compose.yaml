@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: ./service/tgbot/Dockerfile
+    container_name: tgbot
+    restart: always
+    depends_on:
+      - image_handler
+    volumes:
+      - ./images:/app/images/
+
+  image_handler:
+    build:
+      context: .
+      dockerfile: ./service/image_handler/Dockerfile
+    container_name: image_handler
+    restart: always
+    volumes:
+      - ./images:/app/images/
