@@ -35,17 +35,15 @@ async def handle_photo(message: types.Message):
     await message.photo[-1].download(
         os.path.join(request_images_path, "input.jpg")
     )
-    
-    start_time = time.time()
+
     await message.answer("Определяю еду на фото")
     response = requests.post(
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
-    time_spent = time.time() - start_time
     await bot.send_message(
         message.from_user.id,
-        f"Думаю, что это {response.text}, inference time: {time_spent}",
+        f"Думаю, что это {response.text}",
     )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
