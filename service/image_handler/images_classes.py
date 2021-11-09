@@ -6,7 +6,7 @@ eats_classes_dict = {
     "american food": "американская еда",
     "french food": "французская кухня",
     "soup": "суп",
-    "sushi": "суши",
+    "sushi": "суши/роллы",
     "pizza": "пицца",
     "lasagna": "лазанья",
     "poke": "поке",
@@ -70,4 +70,14 @@ eats_classes_dict = {
     "cottage cheese": "творог",
     "milk": "молоко",
     "pilaf": "плов",
+    "wine glass": "вино",
 }
+not_food_classes = [
+    "bird",
+    "animal",
+    "person",
+    "car",
+    "plant",
+    "interior",
+    "not food",
+]

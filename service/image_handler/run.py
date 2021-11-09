@@ -12,8 +12,6 @@ from PIL import Image
 
 app = Flask(__name__)
 
-app.route("/return_message", methods=["GET", "POST"])
-
 
 def apply_clip(image):
     # Prepare the inputs
@@ -45,19 +43,13 @@ def apply_clip(image):
 
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():
-    print("request recieved")
     request_time = request.form["time"]
     path_to_input_image = os.path.join(
         config.images_path, request_time, "input.jpg"
     )
-    print(path_to_input_image)
     image = Image.open(open(path_to_input_image, "rb"))
-    print(type(image))
     result = apply_clip(image)
-    # return result
     return result
-    # res_path = os.path.join(config.images_path, request_time, "result.jpg")
-    # cv2.imwrite(res_path, result[:, :, ::-1] * 255)
 
 
 if __name__ == "__main__":
