@@ -72,12 +72,12 @@ eats_classes_dict = {
     "pilaf": "плов",
     "wine glass": "вино",
 }
-not_food_classes = [
-    "bird",
-    "animal",
-    "person",
-    "car",
-    "plant",
-    "interior",
-    "not food",
-]
+not_food_classes = {
+    "person": "человек",
+    "bird": "птица",
+    "animal": "животное",
+    "car": "автомобиль",
+    "plant": "растение",
+    "interior": "интерьер",
+    "not food": "не еда",
+}

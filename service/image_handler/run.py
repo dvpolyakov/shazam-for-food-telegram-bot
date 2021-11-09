@@ -1,14 +1,12 @@
-import clip
-import torch
-
 import os
-import config
 
-# import cv2
-from service.image_handler.images_classes import eats_classes_dict
-from flask import Flask, request
+import clip
+import eats_classes_dict
+import torch
 from PIL import Image
+from flask import Flask, request
 
+import config
 
 app = Flask(__name__)
 

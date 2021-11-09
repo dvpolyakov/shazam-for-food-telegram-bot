@@ -3,22 +3,22 @@ import logging
 import os
 from datetime import datetime
 from pathlib import Path
-import time
+
 import requests
 from aiogram import types
 
-# from aiogram.dispatcher.filters import Text
-# from aiogram.types.bot_command import BotCommand
-
+import eats_classes_dict
 import config
-
-# from service.tgbot.code import text_captions
 from service.tgbot.code.setup_objects import (
     bot,
     dp,
     # generate_user_image_assesment_keyboard,
     # show_menu_reply
 )
+
+
+# from aiogram.dispatcher.filters import Text
+# from aiogram.types.bot_command import BotCommand
 
 # from service.tgbot.code.bot_states import register_handlers_braces
 # from service.tgbot.code.setup_objects import db_connection
