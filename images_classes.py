@@ -74,6 +74,7 @@ eats_classes_dict = {
     "beans": "бобы",
     "corn": "кукуруза",
     "breakfast": "завтрак (брекфаст)",
+    "lobster": "лобстеры"
 }
 
 not_food_classes = {
