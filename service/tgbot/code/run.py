@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 from aiogram import types
 
-import eats_classes_dict
+from images_classes import eats_classes_dict
 import config
 from service.tgbot.code.setup_objects import (
     bot,

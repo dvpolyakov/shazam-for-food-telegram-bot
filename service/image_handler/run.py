@@ -1,7 +1,7 @@
 import os
 
 import clip
-import eats_classes_dict
+from images_classes import eats_classes_dict
 import torch
 from PIL import Image
 from flask import Flask, request
