@@ -73,7 +73,9 @@ eats_classes_dict = {
     "wine glass": "вино",
     "beans": "бобы",
     "corn": "кукуруза",
+    "breakfast": "завтрак (брекфаст)",
 }
+
 not_food_classes = {
     "person": "человек",
     "bird": "птица",
