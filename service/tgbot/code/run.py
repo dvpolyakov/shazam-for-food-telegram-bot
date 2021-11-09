@@ -62,24 +62,24 @@ async def handle_photo(message: types.Message):
     # )
 
 
-@dp.message_handler()
-async def echo(message: types.Message):
-    await message.reply(
-        "Просто отправь мне фотографию блюда, "
-        + "а я определю, какое блюдо на нам изображено. \n"
-        + "Фотографии блюд можно переслать (forward) "
-        + "из этого канала: https://t.me/shazam_for_food_examples"
-    )
-
-
 @dp.message_handler(commands="start")
 async def send_start_message(message: types.Message):
     await bot.send_message(
         message.from_user.id,
         "Привет! Я - шазам для еды. \nОтправь мне фотографию блюда,"
         + " а я определю, какое блюдо на нам изображено\n"
-        + "Фотографии блюд можно переслать (forward)"
+        + "Также можешь переслать (forward) отографию блюда "
         + " из этого канала: https://t.me/shazam_for_food_examples",
+    )
+
+
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.reply(
+        "Просто отправь мне фотографию блюда, "
+        + "а я определю, какое блюдо на нам изображено. \n"
+        + "Также можешь переслать (forward) отографию блюда "
+        + "из этого канала: https://t.me/shazam_for_food_examples"
     )
 
 
