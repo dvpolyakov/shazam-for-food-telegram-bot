@@ -71,6 +71,8 @@ eats_classes_dict = {
     "milk": "молоко",
     "pilaf": "плов",
     "wine glass": "вино",
+    'beans': "бобы",
+    'corn': "кукуруза"
 }
 not_food_classes = {
     "person": "человек",
