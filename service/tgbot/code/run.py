@@ -66,10 +66,12 @@ async def handle_photo(message: types.Message):
 async def send_start_message(message: types.Message):
     await bot.send_message(
         message.from_user.id,
-        "Привет! Я - шазам для еды. \nОтправь мне фотографию блюда,"
+        "Привет! Я - шазам для еды. Я умею определять 70 видов блюд по фотографии. "
+        + "\nОтправь мне фотографию блюда,"
         + " а я определю, какое блюдо на нам изображено\n"
-        + "Также можешь переслать (forward) отографию блюда "
-        + " из этого канала: https://t.me/shazam_for_food_examples",
+        + "Также можешь переслать фотографию блюда "
+        + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples\n\n"
+        + "Давай я попробую угадать, какое блюдо ты мне пришлешь?)",
     )
 
 
@@ -78,8 +80,8 @@ async def echo(message: types.Message):
     await message.reply(
         "Просто отправь мне фотографию блюда, "
         + "а я определю, какое блюдо на нам изображено. \n"
-        + "Также можешь переслать (forward) отографию блюда "
-        + "из этого канала: https://t.me/shazam_for_food_examples"
+        + "Также можешь переслать фотографию блюда "
+        + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples"
     )
 
 
