@@ -76,7 +76,6 @@ eats_classes_dict = {
     "breakfast": "завтрак (брекфаст)",
     "lobster": "лобстеры",
     "ravioli": "равиоли",
-    "dumplings": "пельмени"
 }
 
 not_food_classes = {
