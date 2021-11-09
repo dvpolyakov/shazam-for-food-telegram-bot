@@ -71,8 +71,8 @@ eats_classes_dict = {
     "milk": "молоко",
     "pilaf": "плов",
     "wine glass": "вино",
-    'beans': "бобы",
-    'corn': "кукуруза"
+    "beans": "бобы",
+    "corn": "кукуруза",
 }
 not_food_classes = {
     "person": "человек",
@@ -83,3 +83,11 @@ not_food_classes = {
     "interior": "интерьер",
     "not food": "не еда",
 }
+
+en_dishes_names, ru_dishes_names = list(eats_classes_dict.keys()), list(
+    eats_classes_dict.values()
+)
+en_non_food_names, ru_non_food_names = list(not_food_classes.keys()), list(
+    not_food_classes.values()
+)
+en_all_classes_list = en_dishes_names + en_non_food_names

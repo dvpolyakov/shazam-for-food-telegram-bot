@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 from aiogram import types
 
-from images_classes import eats_classes_dict, not_food_classes
+from images_classes import not_food_classes, eats_classes_dict
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -44,12 +44,12 @@ async def handle_photo(message: types.Message):
     if response.text in not_food_classes:
         await bot.send_message(
             message.from_user.id,
-            f"Не похоже на еду, думаю, что это {response.text}",
+            f"Не похоже на еду, думаю, что это {not_food_classes[response.text]}",
         )
     else:
         await bot.send_message(
             message.from_user.id,
-            f"Думаю, что это {response.text}",
+            f"Думаю, что это {eats_classes_dict[response.text]}",
         )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
