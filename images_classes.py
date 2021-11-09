@@ -2,8 +2,6 @@ eats_classes_dict = {
     "burger": "бургер",
     "strawberry": "клубника",
     "croissant": "круассан",
-    "fast food": "фаст-фуд",
-    "american food": "американская еда",
     "soup": "суп",
     "sushi": "суши/роллы",
     "pizza": "пицца",
@@ -77,7 +75,8 @@ eats_classes_dict = {
     "ravioli": "равиоли",
     "carrot": "морковь",
     "apple": "яблоко",
-    'pringles': "чипсы Pringles"
+    'pringles': "чипсы Pringles",
+    'curry': "карри"
 }
 
 not_food_classes = {
