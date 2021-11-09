@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 from aiogram import types
 
-from images_classes import eats_classes_dict
+from images_classes import eats_classes_dict, not_food_classes
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -41,10 +41,16 @@ async def handle_photo(message: types.Message):
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
-    await bot.send_message(
-        message.from_user.id,
-        f"Думаю, что это {response.text}",
-    )
+    if response.text in not_food_classes:
+        await bot.send_message(
+            message.from_user.id,
+            f"Не похоже на еду, думаю, что это {response.text}",
+        )
+    else:
+        await bot.send_message(
+            message.from_user.id,
+            f"Думаю, что это {response.text}",
+        )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
     # )
@@ -67,8 +73,8 @@ async def send_start_message(message: types.Message):
     await bot.send_message(
         message.from_user.id,
         "Привет! Я - шазам для еды. Я умею определять 70 видов блюд по фотографии. "
-        + "\nОтправь мне фотографию блюда,"
-        + " а я определю, какое блюдо на нам изображено\n"
+        + "\nОтправь мне фотографию блюда, "
+        + "а я определю, какая еда на нам изображена\n"
         + "Также можешь переслать фотографию блюда "
         + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples\n\n"
         + "Давай я попробую угадать, какое блюдо ты мне пришлешь?)",
@@ -79,7 +85,7 @@ async def send_start_message(message: types.Message):
 async def echo(message: types.Message):
     await message.reply(
         "Просто отправь мне фотографию блюда, "
-        + "а я определю, какое блюдо на нам изображено. \n"
+        + "а я определю, какая еда на нам изображена\n"
         + "Также можешь переслать фотографию блюда "
         + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples"
     )

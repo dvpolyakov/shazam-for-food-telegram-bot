@@ -1,7 +1,7 @@
 import os
 
 import clip
-from images_classes import eats_classes_dict
+from images_classes import eats_classes_dict, not_food_classes
 import torch
 from PIL import Image
 from flask import Flask, request
@@ -17,8 +17,13 @@ def apply_clip(image):
     en_dishes_names, ru_dishes_names = list(eats_classes_dict.keys()), list(
         eats_classes_dict.values()
     )
+    en_non_food_names, ru_non_food_names = list(not_food_classes.keys()), list(
+        not_food_classes.values()
+    )
+    en_all_classes_list = en_dishes_names + en_non_food_names
+    ru_all_classes_list = ru_dishes_names + ru_non_food_names
     text_inputs = torch.cat(
-        [clip.tokenize(f"a photo of a {c}") for c in en_dishes_names]
+        [clip.tokenize(f"a photo of a {c}") for c in en_all_classes_list]
     ).to(device)
 
     # Calculate features
@@ -31,7 +36,7 @@ def apply_clip(image):
     text_features /= text_features.norm(dim=-1, keepdim=True)
     similarity = (100.0 * image_features @ text_features.T).softmax(dim=-1)
     values, indices = similarity[0].topk(5)
-    return ru_dishes_names[indices[0]]
+    return ru_all_classes_list[indices[0]]
 
     # Print the result
     # print("\nTop predictions:\n")
