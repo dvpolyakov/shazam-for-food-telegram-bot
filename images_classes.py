@@ -4,7 +4,6 @@ eats_classes_dict = {
     "croissant": "круассан",
     "fast food": "фаст-фуд",
     "american food": "американская еда",
-    "french food": "французская кухня",
     "soup": "суп",
     "sushi": "суши/роллы",
     "pizza": "пицца",
@@ -76,6 +75,9 @@ eats_classes_dict = {
     "breakfast": "завтрак (брекфаст)",
     "lobster": "лобстеры",
     "ravioli": "равиоли",
+    "carrot": "морковь",
+    "apple": "яблоко",
+    'pringles': "чипсы Pringles"
 }
 
 not_food_classes = {
