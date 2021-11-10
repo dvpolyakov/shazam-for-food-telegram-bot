@@ -102,4 +102,3 @@ en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
 en_non_food_classes, ru_non_food_classes = list(not_food_classes.keys()), list(
     not_food_classes.values()
 )
-en_all_classes_list = en_dishes_classes + en_non_food_classes

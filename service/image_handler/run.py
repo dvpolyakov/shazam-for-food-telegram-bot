@@ -68,12 +68,14 @@ def return_message():
 
 
 def prepare_captions_embeddings(captions):
-    embeds = model.encode_text(
-        torch.cat([clip.tokenize(f"a photo of a {c}") for c in captions]).to(
-            device
+    with torch.no_grad():
+
+        embeds = model.encode_text(
+            torch.cat([clip.tokenize(f"a photo of a {c}") for c in captions]).to(
+                device
+            )
         )
-    )
-    embeds /= embeds.norm(dim=-1, keepdim=True)
+        embeds /= embeds.norm(dim=-1, keepdim=True)
     return embeds
 
 
