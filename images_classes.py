@@ -75,8 +75,10 @@ eats_classes_dict = {
     "ravioli": "равиоли",
     "carrot": "морковь",
     "apple": "яблоко",
-    'pringles': "чипсы Pringles",
-    'curry': "карри"
+    "pringles": "чипсы Pringles",
+    "curry": "карри",
+    "beer": "пивчик",
+    "coffee": "кофе",
 }
 
 not_food_classes = {
