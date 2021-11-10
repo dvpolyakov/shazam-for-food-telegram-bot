@@ -93,10 +93,13 @@ not_food_classes = {
     "not food": "не еда",
 }
 
-en_dishes_names, ru_dishes_names = list(eats_classes_dict.keys()), list(
+food_not_food_classes = ["food", "not food"]
+
+
+en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
     eats_classes_dict.values()
 )
-en_non_food_names, ru_non_food_names = list(not_food_classes.keys()), list(
+en_non_food_classes, ru_non_food_classes = list(not_food_classes.keys()), list(
     not_food_classes.values()
 )
-en_all_classes_list = en_dishes_names + en_non_food_names
+en_all_classes_list = en_dishes_classes + en_non_food_classes

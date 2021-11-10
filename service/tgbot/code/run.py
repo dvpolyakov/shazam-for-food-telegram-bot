@@ -3,7 +3,7 @@ import logging
 import os
 from datetime import datetime
 from pathlib import Path
-
+import json
 import requests
 from aiogram import types
 
@@ -41,15 +41,16 @@ async def handle_photo(message: types.Message):
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
-    if response.text in not_food_classes:
+    response = json.loads(response)
+    if response["image_is_food"]:
         await bot.send_message(
             message.from_user.id,
-            f"Не похоже на еду. Думаю, что это {not_food_classes[response.text]}",
+            f"Думаю, что это {eats_classes_dict[response['class_name']]}",
         )
     else:
         await bot.send_message(
             message.from_user.id,
-            f"Думаю, что это {eats_classes_dict[response.text]}",
+            f"Не похоже на еду. Думаю, что это {not_food_classes[response['class_name']]}",
         )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
