@@ -42,11 +42,12 @@ async def handle_photo(message: types.Message):
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
     response = json.loads(response.text)
-    if response["image_is_food"]:
+    if response["object_type"] in ["food", "beverage"]:
         await bot.send_message(
             message.from_user.id,
             f"Думаю, что это {eats_classes_dict[response['class_name']]}",
         )
+
     else:
         await bot.send_message(
             message.from_user.id,

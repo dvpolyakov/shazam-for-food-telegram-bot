@@ -57,7 +57,6 @@ eats_classes_dict = {
     "shawarma": "шаурма",
     "barbecue": "барбекю",
     "sauce": "соус",
-    "beverage": "напитки",
     "tom yam": "том ям",
     "khachapuri": "хачапури",
     "baklava": "пахлава",
@@ -77,11 +76,9 @@ eats_classes_dict = {
     "apple": "яблоко",
     "pringles": "чипсы Pringles",
     "curry": "карри",
-    "beer": "пивчик",
-    "coffee": "кофе",
 }
 
-not_food_classes = {
+not_food_dict = {
     "person": "человек",
     "bird": "птица",
     "animal": "животное",
@@ -90,15 +87,18 @@ not_food_classes = {
     "car": "автомобиль",
     "plant": "растение",
     "interior": "интерьер",
-    "not food": "не еда",
 }
+beverage_dict = {"beer": "пивчик", "coffee": "кофе"}
 
-food_not_food_classes = ["food", "not food"]
+food_not_food_classes = ["food", "beverage", "not food"]
 
 
 en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
     eats_classes_dict.values()
 )
-en_non_food_classes, ru_non_food_classes = list(not_food_classes.keys()), list(
-    not_food_classes.values()
+en_non_food_classes, ru_non_food_classes = list(not_food_dict.keys()), list(
+    not_food_dict.values()
+)
+en_beverage_classes, ru_beverage_classes = list(beverage_dict.keys()), list(
+    beverage_dict.values()
 )
