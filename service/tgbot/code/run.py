@@ -7,7 +7,7 @@ import json
 import requests
 from aiogram import types
 
-from images_classes import not_food_classes, eats_classes_dict
+from images_classes import not_food_dict, eats_classes_dict, beverage_dict
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -42,16 +42,20 @@ async def handle_photo(message: types.Message):
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
     response = json.loads(response.text)
-    if response["object_type"] in ["food", "beverage"]:
+    if response["object_type"] == "food":
         await bot.send_message(
             message.from_user.id,
             f"Думаю, что это {eats_classes_dict[response['class_name']]}",
         )
-
+    elif response["object_type"] == "beverage":
+        await bot.send_message(
+            message.from_user.id,
+            f"Думаю, что это {beverage_dict[response['class_name']]}",
+        )
     else:
         await bot.send_message(
             message.from_user.id,
-            f"Не похоже на еду. Думаю, что это {not_food_classes[response['class_name']]}",
+            f"Не похоже на еду. Думаю, что это {not_food_dict[response['class_name']]}",
         )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
