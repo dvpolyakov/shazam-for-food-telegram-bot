@@ -44,7 +44,7 @@ def apply_clip(image):
             100.0 * image_features @ beverage_classes_embeds.T
         ).softmax(dim=-1)
         values, indices = similarity[0].topk(2)
-        class_name = en_dishes_classes[indices[0]]
+        class_name = en_beverage_classes[indices[0]]
     else:
         similarity = (
             100.0 * image_features @ non_food_classes_embeds.T
