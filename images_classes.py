@@ -50,7 +50,7 @@ eats_classes_dict = {
     "potato chips": "чипсы",
     "cheesecake": "чизкейк",
     "ice cream": "мороженое",
-    "pie": "пирог",
+    "pie": "Даша Кубликова",
     "french fries": "картофель фри",
     "pasta": "паста",
     "khinkali": "хинкали",
@@ -79,6 +79,7 @@ eats_classes_dict = {
     "pancakes": "оладушки",
     "pizza and sushi": "сет пицца и суши",
     "mashed potatoes and meatballs": "пюрешка с котлеткой",
+
 }
 
 not_food_dict = {
