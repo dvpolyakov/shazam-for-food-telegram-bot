@@ -7,12 +7,7 @@ import json
 import requests
 from aiogram import types
 
-from images_classes import (
-    not_food_dict,
-    eats_classes_dict,
-    beverage_dict,
-    fruits_dict,
-)
+from images_classes import class_name_to_class_dict
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -38,7 +33,16 @@ def format_classes_probas(classes_probas, classes_names):
     return formatted_msg
 
 
-# def reply_to_user()
+def reply_to_user(message, response):
+    await bot.send_message(
+        message.from_user.id,
+        "Думаю, что это "
+        + format_classes_probas(
+            response["classes_probas"],
+            class_name_to_class_dict[response["object_type"]],
+        ),
+    )
+    pass
 
 
 @dp.message_handler(content_types=["photo"])
@@ -60,26 +64,7 @@ async def handle_photo(message: types.Message):
     )
 
     response = json.loads(response.text)
-    if response["object_type"] == "food":
-        await bot.send_message(
-            message.from_user.id,
-            f"Думаю, что это {format_classes_probas(response['classes_probas'], eats_classes_dict)}",
-        )
-    elif response["object_type"] == "fruits":
-        await bot.send_message(
-            message.from_user.id,
-            f"Думаю, что это {format_classes_probas(response['classes_probas'], fruits_dict)}",
-        )
-    elif response["object_type"] == "beverage":
-        await bot.send_message(
-            message.from_user.id,
-            f"Думаю, что это {format_classes_probas(response['classes_probas'], beverage_dict)}",
-        )
-    else:
-        await bot.send_message(
-            message.from_user.id,
-            f"Не похоже на еду. Думаю, что это {format_classes_probas(response['classes_probas'], not_food_dict)}",
-        )
+    reply_to_user(message, response)
     requests.post(
         "http://image_uploader:5000/upload_images",
         data={
