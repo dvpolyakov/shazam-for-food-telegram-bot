@@ -19,7 +19,7 @@ services:
     restart: always
     volumes:
       - ./images:/app/images/
-      -
+
   image_uploader:
     build:
       context: .
