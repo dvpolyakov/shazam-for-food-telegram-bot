@@ -78,6 +78,7 @@ eats_classes_dict = {
     "cheesecakes": "сырники",
     "pancakes": "оладушки",
     "pizza and sushi": "сет пицца и суши",
+    "mashed potatoes and meatballs": "пюрешка с котлеткой",
 }
 
 not_food_dict = {
