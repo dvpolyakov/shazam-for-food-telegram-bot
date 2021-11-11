@@ -94,7 +94,7 @@ not_food_dict = {
 fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
 beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад", 'wine': 'вино'}
 
-food_not_food_classes = ["food", "beverage", "not food", "fruits"]
+food_not_food_classes = ["food", "beverage", "not_food", "fruits"]
 
 
 en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
