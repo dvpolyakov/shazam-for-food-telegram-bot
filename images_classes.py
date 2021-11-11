@@ -92,7 +92,7 @@ not_food_dict = {
     "interior": "интерьер",
 }
 fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
-beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад"}
+beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад", 'wine': 'вино'}
 
 food_not_food_classes = ["food", "beverage", "not food", "fruits"]
 
