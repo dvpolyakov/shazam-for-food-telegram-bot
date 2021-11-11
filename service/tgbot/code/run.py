@@ -59,7 +59,8 @@ async def handle_photo(message: types.Message):
         )
     requests.post(
         "http://image_uploader:5000/upload_images",
-        data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
+        data={"time": current_time_dttm.strftime(config.TIME_FORMAT),
+              "user_id": message.from_user.id},
     )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
