@@ -20,7 +20,7 @@ from service.tgbot.code.setup_objects import (
     # generate_user_image_assesment_keyboard,
     # show_menu_reply
 )
-
+import service.tgbot.code.messages_text as messages_text
 
 # from aiogram.dispatcher.filters import Text
 # from aiogram.types.bot_command import BotCommand
@@ -36,6 +36,9 @@ def format_classes_probas(classes_probas, classes_names):
             classes_names[class_en_name] + " на " + str(proba) + "%\n"
         )
     return formatted_msg
+
+
+# def reply_to_user()
 
 
 @dp.message_handler(content_types=["photo"])
@@ -85,16 +88,6 @@ async def handle_photo(message: types.Message):
         },
     )
     # await bot.send_message(
-    #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
-    # )
-    # else:
-    #     img = open(request_images_path + "/result.jpg", "rb")
-    #     await bot.send_photo(
-    #         message.from_user.id,
-    #         img,
-    #         caption=response.text,
-    #     )
-    # await bot.send_message(
     #     chat_id=message.from_user.id,
     #     text=text_captions.MESSAGE_ASK_USER_ABOUT_RESULT,
     #     reply_markup=generate_user_image_assesment_keyboard(),
@@ -105,22 +98,16 @@ async def handle_photo(message: types.Message):
 async def send_start_message(message: types.Message):
     await bot.send_message(
         message.from_user.id,
-        "Привет! Я - шазам для еды. Я умею определять 70 видов блюд по фотографии. "
-        + "\nОтправь мне фотографию блюда, "
-        + "а я определю, какая еда на нам изображена\n"
-        + "Также можешь переслать фотографию блюда "
-        + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples\n\n"
-        + "Давай я попробую угадать, какое блюдо ты мне пришлешь?)",
+        messages_text.BOT_DESCRIPTION_MESSAGE
+        + messages_text.STANDARD_ANSWER
+        + messages_text.CHALLENGE_MESSAGE,
     )
 
 
 @dp.message_handler()
 async def echo(message: types.Message):
     await message.reply(
-        "Просто отправь мне фотографию блюда, "
-        + "а я определю, какая еда на нам изображена\n"
-        + "Также можешь переслать фотографию блюда "
-        + "из канала с фотографиями еды: https://t.me/shazam_for_food_examples"
+        messages_text.STANDARD_ANSWER + messages_text.CHALLENGE_MESSAGE
     )
 
 

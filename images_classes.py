@@ -76,7 +76,8 @@ eats_classes_dict = {
     "pringles": "чипсы Pringles",
     "curry": "карри",
     "cheesecakes": "сырники",
-    "pancakes": "оладушки"
+    "pancakes": "оладушки",
+    "pizza and sushi": "сет пицца и суши",
 }
 
 not_food_dict = {
