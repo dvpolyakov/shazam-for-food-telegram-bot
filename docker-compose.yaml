@@ -19,3 +19,12 @@ services:
     restart: always
     volumes:
       - ./images:/app/images/
+      -
+  image_uploader:
+    build:
+      context: .
+      dockerfile: ./service/image_uploader/Dockerfile
+    container_name: image_uploader
+    restart: always
+    volumes:
+      - ./images:/app/images/

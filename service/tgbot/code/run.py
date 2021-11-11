@@ -57,6 +57,10 @@ async def handle_photo(message: types.Message):
             message.from_user.id,
             f"Не похоже на еду. Думаю, что это {not_food_dict[response['class_name']]}",
         )
+    requests.post(
+        "http://image_uploader:5000/upload_images",
+        data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
+    )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND
     # )
