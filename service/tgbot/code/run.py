@@ -7,7 +7,12 @@ import json
 import requests
 from aiogram import types
 
-from images_classes import not_food_dict, eats_classes_dict, beverage_dict
+from images_classes import (
+    not_food_dict,
+    eats_classes_dict,
+    beverage_dict,
+    fruits_dict,
+)
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -56,6 +61,11 @@ async def handle_photo(message: types.Message):
         await bot.send_message(
             message.from_user.id,
             f"Думаю, что это {format_classes_probas(response['classes_probas'], eats_classes_dict)}",
+        )
+    elif response["object_type"] == "fruits":
+        await bot.send_message(
+            message.from_user.id,
+            f"Думаю, что это {format_classes_probas(response['classes_probas'], fruits_dict)}",
         )
     elif response["object_type"] == "beverage":
         await bot.send_message(

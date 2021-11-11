@@ -6,6 +6,7 @@ from images_classes import (
     en_non_food_classes,
     food_not_food_classes,
     en_beverage_classes,
+    en_fruits_classes,
 )
 import torch
 from PIL import Image
@@ -47,6 +48,12 @@ def apply_clip(image):
         values, indices = similarity[0].topk(config.TOP_K)
         subclass_names_list = en_dishes_classes
         # class_name = en_dishes_classes[indices[0]]
+    elif object_type == "fruits":
+        similarity = (100.0 * image_features @ fruits_classes_embeds.T).softmax(
+            dim=-1
+        )
+        values, indices = similarity[0].topk(config.TOP_K)
+        subclass_names_list = en_fruits_classes
     elif object_type == "beverage":
         similarity = (
             100.0 * image_features @ beverage_classes_embeds.T
@@ -100,4 +107,5 @@ if __name__ == "__main__":
     food_classes_embeds = prepare_captions_embeddings(en_dishes_classes)
     beverage_classes_embeds = prepare_captions_embeddings(en_beverage_classes)
     non_food_classes_embeds = prepare_captions_embeddings(en_non_food_classes)
+    fruits_classes_embeds = prepare_captions_embeddings(en_fruits_classes)
     app.run(host="0.0.0.0", debug=True)

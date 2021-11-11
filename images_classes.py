@@ -73,10 +73,8 @@ eats_classes_dict = {
     "lobster": "лобстеры",
     "ravioli": "равиоли",
     "carrot": "морковь",
-    "apple": "яблоко",
     "pringles": "чипсы Pringles",
     "curry": "карри",
-    "lemon": "лимон",
     "cheesecakes": "сырники",
 }
 
@@ -90,9 +88,10 @@ not_food_dict = {
     "plant": "растение",
     "interior": "интерьер",
 }
+fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
 beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад"}
 
-food_not_food_classes = ["food", "beverage", "not food"]
+food_not_food_classes = ["food", "beverage", "not food", "fruits"]
 
 
 en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
@@ -103,4 +102,7 @@ en_non_food_classes, ru_non_food_classes = list(not_food_dict.keys()), list(
 )
 en_beverage_classes, ru_beverage_classes = list(beverage_dict.keys()), list(
     beverage_dict.values()
+)
+en_fruits_classes, ru_fruits_classes = list(fruits_dict.keys()), list(
+    fruits_dict.values()
 )
