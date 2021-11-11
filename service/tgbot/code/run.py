@@ -50,6 +50,7 @@ async def handle_photo(message: types.Message):
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
+
     response = json.loads(response.text)
     if response["object_type"] == "food":
         await bot.send_message(

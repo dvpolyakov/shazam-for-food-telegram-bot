@@ -20,9 +20,7 @@ app = Flask(__name__)
 def get_classes_probas(result_values, result_indices, subclass_names_list):
     classes_probas = dict()
     for value, index in zip(result_values, result_indices):
-        classes_probas[subclass_names_list[index]] = round(
-            100 * value.item(), 1
-        )
+        classes_probas[subclass_names_list[index]] = round(100 * value.item())
     return classes_probas
 
 
