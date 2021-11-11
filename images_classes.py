@@ -110,9 +110,3 @@ en_fruits_classes, ru_fruits_classes = list(fruits_dict.keys()), list(
     fruits_dict.values()
 )
 
-
-class_name_to_class_dict = dict()
-class_name_to_class_dict["food"] = eats_classes_dict
-class_name_to_class_dict["fruits"] = fruits_dict
-class_name_to_class_dict["beverage"] = beverage_dict
-class_name_to_class_dict["not_food"] = not_food_dict

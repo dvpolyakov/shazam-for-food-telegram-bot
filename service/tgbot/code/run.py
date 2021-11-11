@@ -7,7 +7,7 @@ import json
 import requests
 from aiogram import types
 
-from images_classes import class_name_to_class_dict
+from images_classes import eats_classes_dict, fruits_dict, beverage_dict, not_food_dict
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -23,6 +23,11 @@ import service.tgbot.code.messages_text as messages_text
 # from service.tgbot.code.bot_states import register_handlers_braces
 # from service.tgbot.code.setup_objects import db_connection
 
+class_name_to_class_dict = dict()
+class_name_to_class_dict["food"] = eats_classes_dict
+class_name_to_class_dict["fruits"] = fruits_dict
+class_name_to_class_dict["beverage"] = beverage_dict
+class_name_to_class_dict["not_food"] = not_food_dict
 
 def format_classes_probas(classes_probas, classes_names):
     formatted_msg = "\n"
