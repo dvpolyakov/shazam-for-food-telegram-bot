@@ -33,7 +33,7 @@ def format_classes_probas(classes_probas, classes_names):
     return formatted_msg
 
 
-def reply_to_user(message, response):
+async def reply_to_user(message, response):
     await bot.send_message(
         message.from_user.id,
         "Думаю, что это "
@@ -42,7 +42,6 @@ def reply_to_user(message, response):
             class_name_to_class_dict[response["object_type"]],
         ),
     )
-    pass
 
 
 @dp.message_handler(content_types=["photo"])
@@ -64,7 +63,7 @@ async def handle_photo(message: types.Message):
     )
 
     response = json.loads(response.text)
-    reply_to_user(message, response)
+    await reply_to_user(message, response)
     requests.post(
         "http://image_uploader:5000/upload_images",
         data={
@@ -85,6 +84,7 @@ async def send_start_message(message: types.Message):
         message.from_user.id,
         messages_text.BOT_DESCRIPTION_MESSAGE
         + messages_text.STANDARD_ANSWER
+        + " "
         + messages_text.CHALLENGE_MESSAGE,
     )
 
