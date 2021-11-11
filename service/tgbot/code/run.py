@@ -24,6 +24,15 @@ from service.tgbot.code.setup_objects import (
 # from service.tgbot.code.setup_objects import db_connection
 
 
+def format_classes_probas(classes_probas, classes_names):
+    formatted_msg = "\n"
+    for class_en_name, proba in classes_probas.items():
+        formatted_msg += (
+            classes_names[class_en_name] + " на " + str(proba) + "%\n"
+        )
+    return formatted_msg
+
+
 @dp.message_handler(content_types=["photo"])
 async def handle_photo(message: types.Message):
     current_time_dttm = datetime.now()
@@ -45,22 +54,24 @@ async def handle_photo(message: types.Message):
     if response["object_type"] == "food":
         await bot.send_message(
             message.from_user.id,
-            f"Думаю, что это {eats_classes_dict[response['class_name']]}",
+            f"Думаю, что это {format_classes_probas(response['classes_probas'], eats_classes_dict)}",
         )
     elif response["object_type"] == "beverage":
         await bot.send_message(
             message.from_user.id,
-            f"Думаю, что это {beverage_dict[response['class_name']]}",
+            f"Думаю, что это {format_classes_probas(response['classes_probas'], beverage_dict)}",
         )
     else:
         await bot.send_message(
             message.from_user.id,
-            f"Не похоже на еду. Думаю, что это {not_food_dict[response['class_name']]}",
+            f"Не похоже на еду. Думаю, что это {format_classes_probas(response['classes_probas'], not_food_dict)}",
         )
     requests.post(
         "http://image_uploader:5000/upload_images",
-        data={"time": current_time_dttm.strftime(config.TIME_FORMAT),
-              "user_id": message.from_user.id},
+        data={
+            "time": current_time_dttm.strftime(config.TIME_FORMAT),
+            "user_id": message.from_user.id,
+        },
     )
     # await bot.send_message(
     #     message.from_user.id, text_captions.MESSAGE_BRACES_NOT_FOUND

@@ -76,6 +76,8 @@ eats_classes_dict = {
     "apple": "яблоко",
     "pringles": "чипсы Pringles",
     "curry": "карри",
+    "lemon": "лимон",
+    "cheesecakes": "сырники",
 }
 
 not_food_dict = {
@@ -88,7 +90,7 @@ not_food_dict = {
     "plant": "растение",
     "interior": "интерьер",
 }
-beverage_dict = {"beer": "пивчик", "coffee": "кофе"}
+beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад"}
 
 food_not_food_classes = ["food", "beverage", "not food"]
 

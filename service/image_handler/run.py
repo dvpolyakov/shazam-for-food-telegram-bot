@@ -17,6 +17,15 @@ import config
 app = Flask(__name__)
 
 
+def get_classes_probas(result_values, result_indices, subclass_names_list):
+    classes_probas = dict()
+    for value, index in zip(result_values, result_indices):
+        classes_probas[subclass_names_list[index]] = round(
+            100 * value.item(), 1
+        )
+    return classes_probas
+
+
 def apply_clip(image):
     # Prepare the inputs
     image_input = preprocess(image).unsqueeze(0).to(device)
@@ -28,39 +37,39 @@ def apply_clip(image):
     # Pick the top 5 most similar labels for the image
     image_features /= image_features.norm(dim=-1, keepdim=True)
 
-    # first classify food/no food
+    # first classify food/beverage/no food
     similarity = (100.0 * image_features @ food_or_no_embeds.T).softmax(dim=-1)
-    values, indices = similarity[0].topk(2)
+    values, indices = similarity[0].topk(3)
     object_type = food_not_food_classes[indices[0]]
 
     if object_type == "food":
         similarity = (100.0 * image_features @ food_classes_embeds.T).softmax(
             dim=-1
         )
-        values, indices = similarity[0].topk(5)
-        class_name = en_dishes_classes[indices[0]]
+        values, indices = similarity[0].topk(config.TOP_K)
+        subclass_names_list = en_dishes_classes
+        # class_name = en_dishes_classes[indices[0]]
     elif object_type == "beverage":
         similarity = (
             100.0 * image_features @ beverage_classes_embeds.T
         ).softmax(dim=-1)
-        values, indices = similarity[0].topk(2)
-        class_name = en_beverage_classes[indices[0]]
+        values, indices = similarity[0].topk(config.TOP_K)
+        subclass_names_list = en_beverage_classes
+        # class_name = en_beverage_classes[indices[0]]
     else:
         similarity = (
             100.0 * image_features @ non_food_classes_embeds.T
         ).softmax(dim=-1)
-        values, indices = similarity[0].topk(5)
-        class_name = en_non_food_classes[indices[0]]
+        values, indices = similarity[0].topk(config.TOP_K)
+        subclass_names_list = en_non_food_classes
+        # class_name = en_non_food_classes[indices[0]]
+
+    classes_probas = get_classes_probas(values, indices, subclass_names_list)
 
     response = dict()
     response["object_type"] = object_type
-    response["class_name"] = class_name
+    response["classes_probas"] = classes_probas
     return json.dumps(response)
-
-    # Print the result
-    # print("\nTop predictions:\n")
-    # for value, index in zip(values, indices):
-    #     print(f"{eats_classes[index]:>16s}: {100 * value.item():.2f}%")
 
 
 @app.route("/return_message", methods=["GET", "POST"])
