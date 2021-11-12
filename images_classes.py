@@ -79,7 +79,9 @@ eats_classes_dict = {
     "pancakes": "оладушки",
     "pizza and sushi": "сет пицца и суши",
     "mashed potatoes and meatballs": "пюрешка с котлеткой",
-
+    "chak-chak": "чак-чак",
+    "stuffed cabbage or cabbage rolls": "голубцы",
+    "stuffed pepper": "фаршированый перец",
 }
 
 not_food_dict = {
@@ -93,7 +95,13 @@ not_food_dict = {
     "interior": "интерьер",
 }
 fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
-beverage_dict = {"beer": "пивчик", "coffee": "кофе", "lemonade": "лимонад", 'white wine': 'вино', 'red wine': 'красное вино'}
+beverage_dict = {
+    "beer": "пивчик",
+    "coffee": "кофе",
+    "lemonade": "лимонад",
+    "white wine": "белое вино",
+    "red wine": "красное вино",
+}
 
 food_not_food_classes = ["food", "beverage", "not_food", "fruits"]
 
@@ -110,4 +118,3 @@ en_beverage_classes, ru_beverage_classes = list(beverage_dict.keys()), list(
 en_fruits_classes, ru_fruits_classes = list(fruits_dict.keys()), list(
     fruits_dict.values()
 )
-
