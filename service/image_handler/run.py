@@ -54,36 +54,7 @@ def apply_clip(image):
         image_features, object_type
     )
 
-    # if object_type == "food":
-    #     similarity = (100.0 * image_features @ food_classes_embeds.T).softmax(
-    #         dim=-1
-    #     )
-    #     values, indices = similarity[0].topk(config.TOP_K)
-    #     subclass_names_list = en_dishes_classes
-    #     # class_name = en_dishes_classes[indices[0]]
-    # elif object_type == "fruits":
-    #     similarity = (100.0 * image_features @ fruits_classes_embeds.T).softmax(
-    #         dim=-1
-    #     )
-    #     values, indices = similarity[0].topk(config.TOP_K)
-    #     subclass_names_list = en_fruits_classes
-    # elif object_type == "beverage":
-    #     similarity = (
-    #         100.0 * image_features @ beverage_classes_embeds.T
-    #     ).softmax(dim=-1)
-    #     values, indices = similarity[0].topk(config.TOP_K)
-    #     subclass_names_list = en_beverage_classes
-    #     # class_name = en_beverage_classes[indices[0]]
-    # else:
-    #     similarity = (
-    #         100.0 * image_features @ non_food_classes_embeds.T
-    #     ).softmax(dim=-1)
-    #     values, indices = similarity[0].topk(config.TOP_K)
-    #     subclass_names_list = en_non_food_classes
-    #     # class_name = en_non_food_classes[indices[0]]
-
     classes_probas = get_classes_probas(values, indices, subclass_names_list)
-
     response = dict()
     response["object_type"] = object_type
     response["classes_probas"] = classes_probas
@@ -121,19 +92,14 @@ if __name__ == "__main__":
     beverage_classes_embeds = prepare_captions_embeddings(en_beverage_classes)
     non_food_classes_embeds = prepare_captions_embeddings(en_non_food_classes)
     fruits_classes_embeds = prepare_captions_embeddings(en_fruits_classes)
-
     subclasses_embeds = dict()
     subclasses_en_names = dict()
     subclasses_embeds["food"] = food_classes_embeds
     subclasses_en_names["food"] = en_dishes_classes
-
     subclasses_embeds["beverage"] = beverage_classes_embeds
     subclasses_en_names["beverage"] = en_beverage_classes
-
     subclasses_embeds["fruits"] = fruits_classes_embeds
     subclasses_en_names["fruits"] = en_fruits_classes
-
     subclasses_embeds["not_food"] = non_food_classes_embeds
     subclasses_en_names["not_food"] = en_non_food_classes
-
     app.run(host="0.0.0.0", debug=True)
