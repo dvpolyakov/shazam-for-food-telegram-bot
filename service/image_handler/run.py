@@ -102,8 +102,8 @@ if __name__ == "__main__":
     subclasses_en_names["beverage"] = en_beverage_classes
     subclasses_embeds["fruits"] = fruits_classes_embeds
     subclasses_en_names["fruits"] = en_fruits_classes
-    subclasses_embeds["not_food"] = non_food_classes_embeds
-    subclasses_en_names["not_food"] = en_non_food_classes
+    subclasses_embeds["not food"] = non_food_classes_embeds
+    subclasses_en_names["not food"] = en_non_food_classes
     subclasses_embeds["plant"] = plants_classes_embeds
     subclasses_en_names["plant"] = en_fruits_classes
     app.run(host="0.0.0.0", debug=True)

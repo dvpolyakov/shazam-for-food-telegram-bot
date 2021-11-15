@@ -139,7 +139,7 @@ plant_dict = {
     "flowers": "цветы",
 }
 
-food_not_food_classes = ["food", "beverage", "not_food", "fruits", "plant"]
+food_not_food_classes = ["food", "beverage", "not food", "fruits", "plant"]
 
 
 en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
@@ -162,5 +162,5 @@ class_name_to_class_dict = dict()
 class_name_to_class_dict["food"] = eats_classes_dict
 class_name_to_class_dict["fruits"] = fruits_dict
 class_name_to_class_dict["beverage"] = beverage_dict
-class_name_to_class_dict["not_food"] = not_food_dict
+class_name_to_class_dict["not food"] = not_food_dict
 class_name_to_class_dict["plant"] = plant_dict
