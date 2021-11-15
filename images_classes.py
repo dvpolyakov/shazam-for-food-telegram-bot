@@ -100,6 +100,8 @@ eats_classes_dict = {
     "unagi": "unagi",
     "baked fish": "запеченая рыба",
     "noodles": "лапша",
+    "honey": "мед",
+    "nuts": "орехи",
 }
 
 not_food_dict = {
@@ -129,8 +131,15 @@ beverage_dict = {
     "soy sauce": "соевый соус",
     "white sauce": "белый соус",
 }
+plant_dict = {
+    "pitaya": "питайя (драконий фрукт)",
+    "apple": "яблоко",
+    "lemon": "лимон",
+    "berries": "ягоды",
+    "flowers": "цветы",
+}
 
-food_not_food_classes = ["food", "beverage", "not_food", "fruits"]
+food_not_food_classes = ["food", "beverage", "not_food", "fruits", "plant"]
 
 
 en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
@@ -145,9 +154,13 @@ en_beverage_classes, ru_beverage_classes = list(beverage_dict.keys()), list(
 en_fruits_classes, ru_fruits_classes = list(fruits_dict.keys()), list(
     fruits_dict.values()
 )
+en_plants_classes, ru_plants_classes = list(plant_dict.keys()), list(
+    plant_dict.values()
+)
 
 class_name_to_class_dict = dict()
 class_name_to_class_dict["food"] = eats_classes_dict
 class_name_to_class_dict["fruits"] = fruits_dict
 class_name_to_class_dict["beverage"] = beverage_dict
 class_name_to_class_dict["not_food"] = not_food_dict
+class_name_to_class_dict["plant"] = plant_dict

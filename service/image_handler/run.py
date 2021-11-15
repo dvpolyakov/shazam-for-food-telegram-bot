@@ -7,6 +7,7 @@ from images_classes import (
     food_not_food_classes,
     en_beverage_classes,
     en_fruits_classes,
+    en_plants_classes,
 )
 import torch
 from PIL import Image
@@ -92,6 +93,7 @@ if __name__ == "__main__":
     beverage_classes_embeds = prepare_captions_embeddings(en_beverage_classes)
     non_food_classes_embeds = prepare_captions_embeddings(en_non_food_classes)
     fruits_classes_embeds = prepare_captions_embeddings(en_fruits_classes)
+    plants_classes_embeds = prepare_captions_embeddings(en_plants_classes)
     subclasses_embeds = dict()
     subclasses_en_names = dict()
     subclasses_embeds["food"] = food_classes_embeds
@@ -102,4 +104,6 @@ if __name__ == "__main__":
     subclasses_en_names["fruits"] = en_fruits_classes
     subclasses_embeds["not_food"] = non_food_classes_embeds
     subclasses_en_names["not_food"] = en_non_food_classes
+    subclasses_embeds["plant"] = plants_classes_embeds
+    subclasses_en_names["plant"] = en_fruits_classes
     app.run(host="0.0.0.0", debug=True)
