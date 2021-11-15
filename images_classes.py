@@ -102,6 +102,7 @@ eats_classes_dict = {
     "noodles": "лапша",
     "honey": "мед",
     "nuts": "орехи",
+    "pitaya": "питайя (драконий фрукт)",
 }
 
 not_food_dict = {
