@@ -57,14 +57,12 @@ async def handle_photo(message: types.Message):
         os.path.join(request_images_path, "input.jpg")
     )
 
-    time.sleep(1)
     await message.answer("Определяю еду на фото")
     response = requests.post(
         "http://image_handler:5000/return_message",
         data={"time": current_time_dttm.strftime(config.TIME_FORMAT)},
     )
 
-    time.sleep(2)
     response = json.loads(response.text)
     await reply_to_user(message, response)
     requests.post(
