@@ -7,7 +7,7 @@ import json
 import requests
 from aiogram import types
 
-from images_classes import class_name_to_class_dict, food_not_food_classes
+from images_classes import class_name_to_class_dict, first_level_classes
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -39,7 +39,7 @@ async def reply_to_user(message, response):
         "Думаю, что это "
         + format_classes_probas(
             response["first_level_classes_probas"],
-            food_not_food_classes,
+            first_level_classes,
         ),
     )
     await bot.send_message(
