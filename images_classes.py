@@ -140,24 +140,20 @@ plant_dict = {
     "flowers": "цветы",
 }
 
-food_not_food_classes = ["food", "beverage", "not food", "fruits", "plant"]
+first_level_classes = {
+    "food": "еда",
+    "beverage": "напиток",
+    "not food": "не еда",
+    "fruits": "фрукты",
+    "plant": "растения",
+}
+food_not_food_classes = list(first_level_classes.keys())
 
-
-en_dishes_classes, ru_dishes_classes = list(eats_classes_dict.keys()), list(
-    eats_classes_dict.values()
-)
-en_non_food_classes, ru_non_food_classes = list(not_food_dict.keys()), list(
-    not_food_dict.values()
-)
-en_beverage_classes, ru_beverage_classes = list(beverage_dict.keys()), list(
-    beverage_dict.values()
-)
-en_fruits_classes, ru_fruits_classes = list(fruits_dict.keys()), list(
-    fruits_dict.values()
-)
-en_plants_classes, ru_plants_classes = list(plant_dict.keys()), list(
-    plant_dict.values()
-)
+en_dishes_classes = list(eats_classes_dict.keys())
+en_non_food_classes = list(not_food_dict.keys())
+en_beverage_classes = list(beverage_dict.keys())
+en_fruits_classes = list(fruits_dict.keys())
+en_plants_classes = list(plant_dict.keys())
 
 class_name_to_class_dict = dict()
 class_name_to_class_dict["food"] = eats_classes_dict

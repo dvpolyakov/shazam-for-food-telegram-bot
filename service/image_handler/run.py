@@ -8,6 +8,7 @@ from images_classes import (
     en_beverage_classes,
     en_fruits_classes,
     en_plants_classes,
+    first_level_classes,
 )
 import torch
 from PIL import Image
@@ -49,16 +50,22 @@ def apply_clip(image):
     # first classify food/beverage/no food
     similarity = (100.0 * image_features @ food_or_no_embeds.T).softmax(dim=-1)
     values, indices = similarity[0].topk(3)
+    first_level_classes_probas = get_classes_probas(
+        values, indices, food_not_food_classes
+    )
     object_type = food_not_food_classes[indices[0]]
 
     values, indices, subclass_names_list = calculate_scores_of_subclass(
         image_features, object_type
     )
 
-    classes_probas = get_classes_probas(values, indices, subclass_names_list)
+    second_level_classes_probas = get_classes_probas(
+        values, indices, subclass_names_list
+    )
     response = dict()
     response["object_type"] = object_type
-    response["classes_probas"] = classes_probas
+    response["first_level_classes_probas"] = first_level_classes_probas
+    response["second_level_classes_probas"] = second_level_classes_probas
     return json.dumps(response)
 
 

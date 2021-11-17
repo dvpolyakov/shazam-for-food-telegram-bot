@@ -6,9 +6,8 @@ from pathlib import Path
 import json
 import requests
 from aiogram import types
-import time
 
-from images_classes import class_name_to_class_dict
+from images_classes import class_name_to_class_dict, food_not_food_classes
 import config
 from service.tgbot.code.setup_objects import (
     bot,
@@ -39,7 +38,15 @@ async def reply_to_user(message, response):
         message.from_user.id,
         "Думаю, что это "
         + format_classes_probas(
-            response["classes_probas"],
+            response["first_level_classes_probas"],
+            food_not_food_classes,
+        ),
+    )
+    await bot.send_message(
+        message.from_user.id,
+        "Думаю, что это "
+        + format_classes_probas(
+            response["second_level_classes_probas"],
             class_name_to_class_dict[response["object_type"]],
         ),
     )
