@@ -115,6 +115,7 @@ not_food_dict = {
     "plant": "растение",
     "interior": "интерьер",
     "laptop": "ноутбук",
+    "fish": "рыба"
 }
 fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
 beverage_dict = {
