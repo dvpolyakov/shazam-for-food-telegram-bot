@@ -27,21 +27,22 @@ import service.tgbot.code.messages_text as messages_text
 def format_classes_probas(classes_probas, classes_names):
     formatted_msg = "\n"
     for class_en_name, proba in classes_probas.items():
-        formatted_msg += (
-            classes_names[class_en_name] + " на " + str(proba) + "%\n"
-        )
+        if proba > config.CLASS_PROBA_THRESHOLD:
+            formatted_msg += (
+                classes_names[class_en_name] + " на " + str(proba) + "%\n"
+            )
     return formatted_msg
 
 
 async def reply_to_user(message, response):
-    await bot.send_message(
-        message.from_user.id,
-        "Думаю, что это "
-        + format_classes_probas(
-            response["first_level_classes_probas"],
-            first_level_classes,
-        ),
-    )
+    # await bot.send_message(
+    #     message.from_user.id,
+    #     "Думаю, что это "
+    #     + format_classes_probas(
+    #         response["first_level_classes_probas"],
+    #         first_level_classes,
+    #     ),
+    # )
     await bot.send_message(
         message.from_user.id,
         "Думаю, что это "
