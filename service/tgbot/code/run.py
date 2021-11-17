@@ -34,14 +34,14 @@ def format_classes_probas(classes_probas, classes_names):
 
 
 async def reply_to_user(message, response):
-    await bot.send_message(
-        message.from_user.id,
-        "Думаю, что это "
-        + format_classes_probas(
-            response["first_level_classes_probas"],
-            first_level_classes,
-        ),
-    )
+    # await bot.send_message(
+    #     message.from_user.id,
+    #     "Думаю, что это "
+    #     + format_classes_probas(
+    #         response["first_level_classes_probas"],
+    #         first_level_classes,
+    #     ),
+    # )
     await bot.send_message(
         message.from_user.id,
         "Думаю, что это "
