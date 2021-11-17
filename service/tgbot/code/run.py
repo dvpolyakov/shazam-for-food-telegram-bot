@@ -115,7 +115,7 @@ async def main():
     # Установка команд бота
     # await set_commands(bot)
 
-    await dp.skip_updates()
+    # await dp.skip_updates()
     await dp.start_polling()
 
 
