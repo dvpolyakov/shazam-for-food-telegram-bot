@@ -137,7 +137,9 @@ async def react_incorrect_class(message: types.Message):
 
 
 async def propose_to_send_new_image(message: types.Message):
-    await bot.send_message(message.from_user.id, messages_text="er")
+    await bot.send_message(
+        message.from_user.id, messages_text.PROPOSE_TO_SEND_NEW_IMAGE
+    )
 
 
 @dp.message_handler()
