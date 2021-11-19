@@ -116,12 +116,20 @@ async def send_start_message(message: types.Message):
 
 @dp.message_handler(Text(equals=messages_text.RESULT_GOOD_REACTION))
 async def react_correct_class(message: types.Message):
-    await message.reply(messages_text.REACTION_RESULT_GOOD_REACTION)
+    await bot.send_message(
+        message.from_user.id,
+        messages_text.REACTION_RESULT_GOOD_REACTION,
+        reply_markup=types.ReplyKeyboardRemove(),
+    )
 
 
 @dp.message_handler(Text(equals=messages_text.RESULT_BAD_REACTION))
 async def react_incorrect_class(message: types.Message):
-    await message.reply(messages_text.REACTION_RESULT_BAD_REACTION)
+    await bot.send_message(
+        message.from_user.id,
+        messages_text.REACTION_RESULT_BAD_REACTION,
+        reply_markup=types.ReplyKeyboardRemove(),
+    )
 
 
 @dp.message_handler()
