@@ -22,3 +22,7 @@ RESULT_BAD_REACTION = "Нет, ни один класс не попал"
 
 REACTION_RESULT_GOOD_REACTION = "Ура! Я старался :)"
 REACTION_RESULT_BAD_REACTION = "Понял, буду стараться ялучше в следующий раз"
+PROPOSE_TO_SEND_NEW_IMAGE = (
+    "Присылай новую фотографию"
+    + " - своей еды или пересылай из канала https://t.me/shazam_for_food_examples"
+)

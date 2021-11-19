@@ -7,7 +7,7 @@ import json
 import requests
 from aiogram import types
 from aiogram.dispatcher.filters import Text
-
+import time
 from images_classes import class_name_to_class_dict
 import config
 from service.tgbot.code.setup_objects import (
@@ -121,6 +121,8 @@ async def react_correct_class(message: types.Message):
         messages_text.REACTION_RESULT_GOOD_REACTION,
         reply_markup=types.ReplyKeyboardRemove(),
     )
+    time.sleep(3)
+    await propose_to_send_new_image(message)
 
 
 @dp.message_handler(Text(equals=messages_text.RESULT_BAD_REACTION))
@@ -130,6 +132,12 @@ async def react_incorrect_class(message: types.Message):
         messages_text.REACTION_RESULT_BAD_REACTION,
         reply_markup=types.ReplyKeyboardRemove(),
     )
+    time.sleep(3)
+    await propose_to_send_new_image(message)
+
+
+async def propose_to_send_new_image(message: types.Message):
+    await bot.send_message(message.from_user.id, messages_text="er")
 
 
 @dp.message_handler()
