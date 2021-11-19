@@ -10,3 +10,9 @@ CHALLENGE_MESSAGE = (
 BOT_DESCRIPTION_MESSAGE = (
     "Привет! Я - шазам для еды. Я умею определять 70 видов блюд по фотографии. "
 )
+
+
+FUNNY_CASES_CHANNEL_MESSAGE = (
+    "Также у меня есть канал, где собираются смешные кейсы определения еды"
+    + " - можешь зайти похихикать https://t.me/shazam_for_food_funny_cases\n\n"
+)

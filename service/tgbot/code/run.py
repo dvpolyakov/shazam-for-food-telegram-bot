@@ -93,7 +93,7 @@ async def send_start_message(message: types.Message):
         message.from_user.id,
         messages_text.BOT_DESCRIPTION_MESSAGE
         + messages_text.STANDARD_ANSWER
-        + " "
+        + messages_text.FUNNY_CASES_CHANNEL_MESSAGE
         + messages_text.CHALLENGE_MESSAGE,
     )
 
