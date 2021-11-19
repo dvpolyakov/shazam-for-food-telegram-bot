@@ -80,6 +80,7 @@ eats_classes_dict = {
     "pizza and sushi": "сет пицца и суши",
     "mashed potatoes and meatballs": "пюрешка с котлеткой",
     "chak-chak": "чак-чак",
+    "chak chak": "чак-чак",
     "stuffed cabbage or cabbage rolls": "голубцы",
     "stuffed pepper": "фаршированый перец",
     "mcflurry": "макфлури",
