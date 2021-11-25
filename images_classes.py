@@ -50,7 +50,7 @@ eats_classes_dict = {
     "potato chips": "чипсы",
     "cheesecake": "чизкейк",
     "ice cream": "мороженое",
-    "pie": "Даша Кубликова",
+    "pie": "пирог",
     "french fries": "картофель фри",
     "pasta": "паста",
     "khinkali": "хинкали",
