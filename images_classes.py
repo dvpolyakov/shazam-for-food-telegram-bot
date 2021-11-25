@@ -134,6 +134,8 @@ beverage_dict = {
     "matcha": "чай матча",
     "soy sauce": "соевый соус",
     "white sauce": "белый соус",
+    "coca cola": "кока-кола",
+    "pepsi": "пепси"
 }
 plant_dict = {
     "pitaya": "питайя (драконий фрукт)",
