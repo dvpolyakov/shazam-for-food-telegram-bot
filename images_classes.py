@@ -113,7 +113,8 @@ eats_classes_dict = {
     "pastrami": "пастрами",
     "pho bo": "фо бо",
     "vietnamese cuisine": "вьетнамская кухня",
-    "wok": "вок"
+    "wok": "вок",
+    "ramen": "рамен"
 }
 
 not_food_dict = {
