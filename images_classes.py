@@ -105,7 +105,10 @@ eats_classes_dict = {
     "nuts": "орехи",
     "pitaya": "питайя (драконий фрукт)",
     "fish": "рыба",
-    "khychin": "хычины"
+    "khychin": "хычины",
+    "croutons": "гренки",
+    "cabbage": "капуста",
+    "kimchi": "кимчи"
 }
 
 not_food_dict = {
