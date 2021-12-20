@@ -108,7 +108,9 @@ eats_classes_dict = {
     "khychin": "хычины",
     "croutons": "гренки",
     "cabbage": "капуста",
-    "kimchi": "кимчи"
+    "kimchi": "кимчи",
+    "lobio": "лобио",
+    "pastrami": "пастрами"
 }
 
 not_food_dict = {
