@@ -110,7 +110,9 @@ eats_classes_dict = {
     "cabbage": "капуста",
     "kimchi": "кимчи",
     "lobio": "лобио",
-    "pastrami": "пастрами"
+    "pastrami": "пастрами",
+    "pho bo": "фо бо",
+    "vietnamese cuisine": "вьетнамская кухня"
 }
 
 not_food_dict = {
