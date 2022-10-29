@@ -1,7 +1,6 @@
 Flask
 Pillow
 opencv-python
-face_alignment
 gdown
 colour-science
 ftfy
