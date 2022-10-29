@@ -8,10 +8,14 @@ import torch
 from PIL import Image
 from flask import Flask, request
 import json
-
+import sys
 import config
 
 app = Flask(__name__)
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def get_classes_probas(result_values, result_indices, subclass_names_list):
@@ -31,25 +35,28 @@ def calculate_scores_of_subclass(
 
 
 def apply_clip(image):
-    # Prepare the inputs
-    image_input = preprocess(image).unsqueeze(0).to(device)
+    try:
+        # Prepare the inputs
+        image_input = preprocess(image).unsqueeze(0).to(device)
 
-    # Calculate features
-    with torch.no_grad():
-        image_features = model.encode_image(image_input)
+        # Calculate features
+        with torch.no_grad():
+            image_features = model.encode_image(image_input)
 
-    values, indices, subclass_names_list = calculate_scores_of_subclass(image_features)
+        values, indices, subclass_names_list = calculate_scores_of_subclass(image_features)
 
-    # Pick the top 5 most similar labels for the image
-    image_features /= image_features.norm(dim=-1, keepdim=True)
-    second_level_classes_probas = get_classes_probas(
-        values, indices, subclass_names_list
-    )
-    response = dict()
-    response["object_type"] = "food"
-    response["second_level_classes_probas"] = second_level_classes_probas
-    return json.dumps(response)
-
+        # Pick the top 5 most similar labels for the image
+        image_features /= image_features.norm(dim=-1, keepdim=True)
+        second_level_classes_probas = get_classes_probas(
+            values, indices, subclass_names_list
+        )
+        response = dict()
+        response["object_type"] = "food"
+        response["second_level_classes_probas"] = second_level_classes_probas
+        return json.dumps(response)
+    except Exception as e:
+        eprint(e)
+        return json.dumps({})
 
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():
