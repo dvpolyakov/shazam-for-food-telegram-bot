@@ -25,9 +25,7 @@ def get_classes_probas(result_values, result_indices, subclass_names_list):
     return classes_probas
 
 
-def calculate_scores_of_subclass(
-    image_features,
-):
+def calculate_scores_of_subclass(image_features):
     similarity = (100.0 * image_features @ subclasses_embeds["food"].T).softmax(dim=-1)
     values, indices = similarity[0].topk(config.TOP_K)
     subclass_names_list = subclasses_en_names["food"]
@@ -38,13 +36,10 @@ def apply_clip(image):
     try:
         # Prepare the inputs
         image_input = preprocess(image).unsqueeze(0).to(device)
-
         # Calculate features
         with torch.no_grad():
             image_features = model.encode_image(image_input)
-
         values, indices, subclass_names_list = calculate_scores_of_subclass(image_features)
-
         # Pick the top 5 most similar labels for the image
         image_features /= image_features.norm(dim=-1, keepdim=True)
         second_level_classes_probas = get_classes_probas(
@@ -56,7 +51,8 @@ def apply_clip(image):
         return json.dumps(response)
     except Exception as e:
         eprint(e)
-        return json.dumps({})
+        return json.dumps({'error': e})
+
 
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():

@@ -1,28 +1,36 @@
 import asyncio
+import json
 import logging
 import os
+import sys
+import time
 from datetime import datetime
 from pathlib import Path
-import json
+
 import requests
 from aiogram import types
 from aiogram.dispatcher.filters import Text
-import time
-from images_classes import class_name_to_class_dict
+
 import config
+import service.tgbot.code.messages_text as messages_text
+from images_classes import class_name_to_class_dict
 from service.tgbot.code.setup_objects import (
     bot,
     dp,
     # generate_user_image_assesment_keyboard,
     # show_menu_reply
 )
-import service.tgbot.code.messages_text as messages_text
+
 
 # from aiogram.dispatcher.filters import Text
 # from aiogram.types.bot_command import BotCommand
 
 # from service.tgbot.code.bot_states import register_handlers_braces
 # from service.tgbot.code.setup_objects import db_connection
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def format_classes_probas(classes_probas, classes_names):
@@ -84,6 +92,10 @@ async def handle_photo(message: types.Message):
     )
 
     response = json.loads(response.text)
+    err = response.get('error')
+    if err:
+        eprint(err)
+        print(err)
     await reply_to_user(message, response)
     requests.post(
         "http://image_uploader:5000/upload_images",
