@@ -1,9 +1,3 @@
 Flask
-Pillow
-opencv-python
-gdown
-colour-science
-ftfy
-regex
 tqdm
 git+https://github.com/openai/CLIP.git

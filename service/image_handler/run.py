@@ -3,10 +3,6 @@ import os
 import clip
 from images_classes import (
     en_dishes_classes,
-    food_not_food_classes,
-    en_beverage_classes,
-    en_fruits_classes,
-    en_plants_classes,
 )
 import torch
 from PIL import Image
