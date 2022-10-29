@@ -3,12 +3,10 @@ import os
 import clip
 from images_classes import (
     en_dishes_classes,
-    en_non_food_classes,
     food_not_food_classes,
     en_beverage_classes,
     en_fruits_classes,
     en_plants_classes,
-    first_level_classes,
 )
 import torch
 from PIL import Image
@@ -27,12 +25,12 @@ def get_classes_probas(result_values, result_indices, subclass_names_list):
     return classes_probas
 
 
-def calculate_scores_of_subclass(image_features, object_type):
-    similarity = (
-        100.0 * image_features @ subclasses_embeds[object_type].T
-    ).softmax(dim=-1)
+def calculate_scores_of_subclass(
+    image_features,
+):
+    similarity = (100.0 * image_features @ subclasses_embeds["food"].T).softmax(dim=-1)
     values, indices = similarity[0].topk(config.TOP_K)
-    subclass_names_list = subclasses_en_names[object_type]
+    subclass_names_list = subclasses_en_names["food"]
     return values, indices, subclass_names_list
 
 
@@ -44,27 +42,15 @@ def apply_clip(image):
     with torch.no_grad():
         image_features = model.encode_image(image_input)
 
+    values, indices, subclass_names_list = calculate_scores_of_subclass(image_features)
+
     # Pick the top 5 most similar labels for the image
     image_features /= image_features.norm(dim=-1, keepdim=True)
-
-    # first classify food/beverage/no food
-    similarity = (100.0 * image_features @ food_or_no_embeds.T).softmax(dim=-1)
-    values, indices = similarity[0].topk(3)
-    first_level_classes_probas = get_classes_probas(
-        values, indices, food_not_food_classes
-    )
-    object_type = food_not_food_classes[indices[0]]
-
-    values, indices, subclass_names_list = calculate_scores_of_subclass(
-        image_features, object_type
-    )
-
     second_level_classes_probas = get_classes_probas(
         values, indices, subclass_names_list
     )
     response = dict()
-    response["object_type"] = object_type
-    response["first_level_classes_probas"] = first_level_classes_probas
+    response["object_type"] = "food"
     response["second_level_classes_probas"] = second_level_classes_probas
     return json.dumps(response)
 
@@ -72,9 +58,7 @@ def apply_clip(image):
 @app.route("/return_message", methods=["GET", "POST"])
 def return_message():
     request_time = request.form["time"]
-    path_to_input_image = os.path.join(
-        config.images_path, request_time, "input.jpg"
-    )
+    path_to_input_image = os.path.join(config.images_path, request_time, "input.jpg")
     image = Image.open(open(path_to_input_image, "rb"))
     result = apply_clip(image)
     return result
@@ -82,11 +66,8 @@ def return_message():
 
 def prepare_captions_embeddings(captions):
     with torch.no_grad():
-
         embeds = model.encode_text(
-            torch.cat(
-                [clip.tokenize(f"a photo of a {c}") for c in captions]
-            ).to(device)
+            torch.cat([clip.tokenize(f"a photo of a {c}") for c in captions]).to(device)
         )
         embeds /= embeds.norm(dim=-1, keepdim=True)
     return embeds
@@ -95,22 +76,9 @@ def prepare_captions_embeddings(captions):
 if __name__ == "__main__":
     device = "cpu"
     model, preprocess = clip.load("ViT-B/32", device)
-    food_or_no_embeds = prepare_captions_embeddings(food_not_food_classes)
     food_classes_embeds = prepare_captions_embeddings(en_dishes_classes)
-    beverage_classes_embeds = prepare_captions_embeddings(en_beverage_classes)
-    non_food_classes_embeds = prepare_captions_embeddings(en_non_food_classes)
-    fruits_classes_embeds = prepare_captions_embeddings(en_fruits_classes)
-    plants_classes_embeds = prepare_captions_embeddings(en_plants_classes)
     subclasses_embeds = dict()
     subclasses_en_names = dict()
     subclasses_embeds["food"] = food_classes_embeds
     subclasses_en_names["food"] = en_dishes_classes
-    subclasses_embeds["beverage"] = beverage_classes_embeds
-    subclasses_en_names["beverage"] = en_beverage_classes
-    subclasses_embeds["fruits"] = fruits_classes_embeds
-    subclasses_en_names["fruits"] = en_fruits_classes
-    subclasses_embeds["not food"] = non_food_classes_embeds
-    subclasses_en_names["not food"] = en_non_food_classes
-    subclasses_embeds["plant"] = plants_classes_embeds
-    subclasses_en_names["plant"] = en_fruits_classes
     app.run(host="0.0.0.0", debug=True)

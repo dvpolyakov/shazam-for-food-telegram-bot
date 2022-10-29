@@ -29,9 +29,7 @@ def format_classes_probas(classes_probas, classes_names):
     formatted_msg = "\n"
     for class_en_name, proba in classes_probas.items():
         if proba > config.CLASS_PROBA_THRESHOLD:
-            formatted_msg += (
-                classes_names[class_en_name] + " на " + str(proba) + "%\n"
-            )
+            formatted_msg += classes_names[class_en_name] + " на " + str(proba) + "%\n"
     return formatted_msg
 
 
@@ -78,9 +76,7 @@ async def handle_photo(message: types.Message):
     )
     Path(request_images_path).mkdir(parents=True, exist_ok=True)
 
-    await message.photo[-1].download(
-        os.path.join(request_images_path, "input.jpg")
-    )
+    await message.photo[-1].download(os.path.join(request_images_path, "input.jpg"))
 
     response = requests.post(
         "http://image_handler:5000/return_message",
@@ -144,9 +140,7 @@ async def propose_to_send_new_image(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await message.reply(
-        messages_text.STANDARD_ANSWER + messages_text.CHALLENGE_MESSAGE
-    )
+    await message.reply(messages_text.STANDARD_ANSWER + messages_text.CHALLENGE_MESSAGE)
 
 
 async def main():

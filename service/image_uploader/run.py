@@ -20,6 +20,7 @@ app = Flask(__name__)
 def upload_images():
     pass
 
+
 #     request_time = request.form["time"]
 #     user_id = str(request.form["user_id"])
 #

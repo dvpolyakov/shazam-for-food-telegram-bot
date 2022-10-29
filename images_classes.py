@@ -114,21 +114,9 @@ eats_classes_dict = {
     "pho bo": "фо бо",
     "vietnamese cuisine": "вьетнамская кухня",
     "wok": "вок",
-    "ramen": "рамен"
+    "ramen": "рамен",
 }
 
-not_food_dict = {
-    "person": "человек",
-    "bird": "птица",
-    "animal": "животное",
-    "cat": "кошка",
-    "dog": "cобака",
-    "car": "автомобиль",
-    "plant": "растение",
-    "interior": "интерьер",
-    "laptop": "ноутбук",
-    "fish": "рыба",
-}
 fruits_dict = {"apple": "яблоко", "lemon": "лимон", "berries": "ягоды"}
 beverage_dict = {
     "beer": "пивчик",
@@ -145,7 +133,7 @@ beverage_dict = {
     "soy sauce": "соевый соус",
     "white sauce": "белый соус",
     "coca cola": "кока-кола",
-    "pepsi": "пепси"
+    "pepsi": "пепси",
 }
 plant_dict = {
     "pitaya": "питайя (драконий фрукт)",
@@ -154,25 +142,11 @@ plant_dict = {
     "berries": "ягоды",
     "flowers": "цветы",
 }
-
-first_level_classes = {
-    "food": "еда",
-    "beverage": "напиток",
-    "not food": "не еда",
-    "fruits": "фрукты",
-    "plant": "растения",
-}
-food_not_food_classes = list(first_level_classes.keys())
+eats_classes_dict.update(fruits_dict)
+eats_classes_dict.update(beverage_dict)
+eats_classes_dict.update(plant_dict)
 
 en_dishes_classes = list(eats_classes_dict.keys())
-en_non_food_classes = list(not_food_dict.keys())
-en_beverage_classes = list(beverage_dict.keys())
-en_fruits_classes = list(fruits_dict.keys())
-en_plants_classes = list(plant_dict.keys())
 
 class_name_to_class_dict = dict()
 class_name_to_class_dict["food"] = eats_classes_dict
-class_name_to_class_dict["fruits"] = fruits_dict
-class_name_to_class_dict["beverage"] = beverage_dict
-class_name_to_class_dict["not food"] = not_food_dict
-class_name_to_class_dict["plant"] = plant_dict
